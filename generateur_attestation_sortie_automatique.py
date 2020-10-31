@@ -136,7 +136,7 @@ def send_attestations():
 import json
 
 if __name__ == '__main__':
-    %bash file details_lilian.json
+    !file details_lilian.json
     !ls -larth details_lilian.json
 
     with open("details_lilian.json", "r") as f:
