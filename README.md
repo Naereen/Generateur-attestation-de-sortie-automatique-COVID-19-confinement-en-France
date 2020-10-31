@@ -17,7 +17,7 @@
 
 ## Résultat de l'expérimentation : terminée !
 
-- Regarder [ce notebook](G%C3%A9n%C3%A9rateur%20d'attestation%20de%20sortie%20automatique.ipynb)
+- Regardez [ce notebook](G%C3%A9n%C3%A9rateur%20d'attestation%20de%20sortie%20automatique.ipynb)
 - [Aussi en version statique sur nbviewer](https://nbviewer.jupyter.org/github/Naereen/Generateur-attestation-de-sortie-automatique-COVID-19-confinement-en-France/blob/main/G%C3%A9n%C3%A9rateur%20d%27attestation%20de%20sortie%20automatique.ipynb)
 
 - Et il y a [ce script](generateur_attestation_sortie_automatique.py) pour lancer ça en ligne de commande, avec [ce Makefile](Makefile) (`make run` pour lancer une fois, `make watch_run` pour surveiller et lancer toutes les 55 minutes).
