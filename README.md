@@ -1,15 +1,38 @@
 # Générateur d'attestation de sortie automatique
 
+**Pourquoi ?**
+
+> - *Parce qu'un bon informaticien est un informaticien flemmard*.
+> - *Parce que je ne veux pas remplir plus d'une fois le même formulaire...*
+> - *Parce que c'était amusant.*
+
+
 ## But initial
 
 1. utiliser [Selenium](https://www.selenium.dev/) et [selenium Python](https://selenium-python.readthedocs.io/installation.html) pour automatiser l'utilisation du site [media.interieur.gouv.fr/deplacement-covid-19/](https://media.interieur.gouv.fr/deplacement-covid-19/),
-2. sauvegarder le PDF localement, et l'envoyer par mail ou sur mon site web.
+2. sauvegarder le PDF localement, et l'envoyer par mail ou sur mon site web,
+3. dès que ça marchera, on peut facilement automatiser cela et l'exécuter toutes les 55 minutes, histoire d'avoir toujours une attestation valide à portée de main (elles sont valides une heure...).
 
-> Autre idée ? Le code du site web disponible sur [github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020](https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020), cela pourrait aussi être possible d'utiliser le code Javascript de l'application, en mode serveur (avec nodejs) et sans ouvrir de navigateur headless.
+> Autre idée ? Le code du site web disponible sur [github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020](https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020), cela pourrait aussi être possible d'utiliser le code Javascript de l'application, en mode serveur (avec nodejs) et sans ouvrir de navigateur headless... C'est chiant, donc non.
 
-## Résultat
+## Résultat de l'expérimentation : terminée !
 
-- Pas encore commencé !
+- Regarder [ce notebook](Générateur d'attestation de sortie automatique.ipynb)
+- [Aussi en version statique sur nbviewer](https://nbviewer.jupyter.org/github/Naereen/Generateur-attestation-de-sortie-automatique-COVID-19-confinement-en-France/blob/main/G%C3%A9n%C3%A9rateur%20d%27attestation%20de%20sortie%20automatique.ipynb)
+
+
+Expérimental : vous pouvez lancer ce notebook en mode intéractif, [avec MyBinder](https://mybinder.org/v2/gh/Naereen/Generateur-attestation-de-sortie-automatique-COVID-19-confinement-en-France/master?filepath=G%25C3%25A9n%25C3%25A9rateur%2520d'attestation%2520de%2520sortie%2520automatique.ipynb).
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Naereen/Generateur-attestation-de-sortie-automatique-COVID-19-confinement-en-France/master?filepath=G%25C3%25A9n%25C3%25A9rateur%2520d'attestation%2520de%2520sortie%2520automatique.ipynb)
+
+
+## Capture d'écran du notebook
+
+![capture d'écran du notebook](screenshots/screenshot1.png)
+
+Un exemple d'attestation générée depuis le notebook est [disponible ici dans ce document PDF](exemple_attestation.pdf) (remplie avec les informations par défaut du site du gouvernement).
+
+![capture d'écran de l'attestation](screenshots/screenshot2.png)
 
 ---
 
