@@ -17,13 +17,14 @@
 
 ## Résultat de l'expérimentation : terminée !
 
-- Regarder [ce notebook](Générateur d'attestation de sortie automatique.ipynb)
+- Regarder [ce notebook](G%C3%A9n%C3%A9rateur%20d'attestation%20de%20sortie%20automatique.ipynb)
 - [Aussi en version statique sur nbviewer](https://nbviewer.jupyter.org/github/Naereen/Generateur-attestation-de-sortie-automatique-COVID-19-confinement-en-France/blob/main/G%C3%A9n%C3%A9rateur%20d%27attestation%20de%20sortie%20automatique.ipynb)
 
+- Et il y a [ce script](generateur_attestation_sortie_automatique.py) pour lancer ça en ligne de commande, avec [ce Makefile](Makefile) (`make run` pour lancer une fois, `make watch_run` pour surveiller et lancer toutes les 55 minutes).
 
-Expérimental : vous pouvez lancer ce notebook en mode intéractif, [avec MyBinder](https://mybinder.org/v2/gh/Naereen/Generateur-attestation-de-sortie-automatique-COVID-19-confinement-en-France/master?filepath=G%25C3%25A9n%25C3%25A9rateur%2520d'attestation%2520de%2520sortie%2520automatique.ipynb).
+Expérimental : vous pouvez lancer ce notebook en mode intéractif, [avec MyBinder](https://mybinder.org/v2/gh/Naereen/Generateur-attestation-de-sortie-automatique-COVID-19-confinement-en-France/HEAD?filepath=G%25C3%25A9n%25C3%25A9rateur%2520d'attestation%2520de%2520sortie%2520automatique.ipynb).
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Naereen/Generateur-attestation-de-sortie-automatique-COVID-19-confinement-en-France/master?filepath=G%25C3%25A9n%25C3%25A9rateur%2520d'attestation%2520de%2520sortie%2520automatique.ipynb)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Naereen/Generateur-attestation-de-sortie-automatique-COVID-19-confinement-en-France/HEAD?filepath=G%25C3%25A9n%25C3%25A9rateur%2520d'attestation%2520de%2520sortie%2520automatique.ipynb)
 
 
 ## Capture d'écran du notebook
