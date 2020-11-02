@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+#-*- coding: utf8 -*-
+
 import time
 from datetime import datetime
 import urllib.request
@@ -128,19 +131,20 @@ def download_attestation(details):
 def send_attestations():
     now = datetime.now()
     today = f"{now:%Y-%m-%d}"
-    !ls -larth *pdf
-    !echo CP attestation-$(date '+%Y-%m-%d')_*.pdf ${Szam}attestations/$(date '+%Y-%m-%d')/
-    !CP attestation-$(date '+%Y-%m-%d')_*.pdf ${Szam}attestations/$(date '+%Y-%m-%d')/
+    # TODO write this without needing IPython
+    # !ls -larth *pdf
+    # !echo CP attestation-$(date '+%Y-%m-%d')_*.pdf ${Szam}attestations/$(date '+%Y-%m-%d')/
+    # !CP attestation-$(date '+%Y-%m-%d')_*.pdf ${Szam}attestations/$(date '+%Y-%m-%d')/
 
 
 import json
+import sys
 
 if __name__ == '__main__':
-    !file details_lilian.json
-    !ls -larth details_lilian.json
-
-    with open("details_lilian.json", "r") as f:
-        details_lilian = json.load(f)
-
-    download_attestation(details_lilian)
-    send_attestations()
+    # TODO use a real command line argument parser
+    filename = sys.argv[1] if len(sys.argv) > 1 else "details_lilian.json"
+    with open(filename, "r") as f:
+        details = json.load(f)
+    download_attestation(details)
+    # TODO write this without needing IPython
+    # send_attestations()

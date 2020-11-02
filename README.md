@@ -26,6 +26,13 @@ Expérimental : vous pouvez lancer ce notebook en mode intéractif, [avec MyBind
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Naereen/Generateur-attestation-de-sortie-automatique-COVID-19-confinement-en-France/HEAD?filepath=G%25C3%25A9n%25C3%25A9rateur%2520d'attestation%2520de%2520sortie%2520automatique.ipynb)
 
+## Application bureau (sous GNU/Linux)
+
+Vous pouvez télécharger le projet (`git clone ...`), le sauvegarder dans un dossier de votre choix (par exemple ̀ ~/.local/share/`), adapter le chemin absolu dans [`Generateur-dattestation-de-sortie-automatique.desktop`](Generateur-dattestation-de-sortie-automatique.desktop), pour pointer vers le dossier choisi.
+Il faut changer un peu le code de [`launch.sh`](launch.sh) pour envoyer le PDF généré sur un serveur web de votre choix (ou par exemple automatiser son envoi par mail).
+
+- Ensuite, installer l'application bureau avec ̀`sudo desktop-file-install Generateur-dattestation-de-sortie-automatique.desktop`, et elle devrait être accessible dans votre menu d'application, pour générer une nouvelle application en un clic.
+- *Chez moi, ça marche*, mais je ne ferai rien de plus automatique (je peux répondre à [des questions posées comme issues](https://github.com/Naereen/Generateur-attestation-de-sortie-automatique-COVID-19-confinement-en-France/issues/new) ou [par email](https://perso.crans.org/besson/callme.fr.html)).
 
 ## Capture d'écran du notebook
 

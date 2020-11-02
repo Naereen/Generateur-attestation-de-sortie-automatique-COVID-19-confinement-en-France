@@ -1,0 +1,11 @@
+#!/usr/bin/env xdg-open
+# TODO change path here to a more generic one
+[Desktop Entry]
+Name=Générateur d'attestation de sortie automatique COVID 19 confinement en France
+Comment=Un script IPython qui génère automatiquement une attestation de sortie toute les 55 minutes, pour le confinement 2.0 en France face au COVID 19. Expérimental et pour le plaisir, NE PAS UTILISER EN VRAI.
+Exec=/home/lilian/publis/Generateur-dattestation-de-sortie-automatique.git/launch.sh
+Icon=/home/lilian/publis/Generateur-dattestation-de-sortie-automatique.git/icon.jpeg
+Terminal=false
+Type=Application
+InitialPreference=6
+TryExec=/home/lilian/publis/Generateur-dattestation-de-sortie-automatique.git/launch.sh
