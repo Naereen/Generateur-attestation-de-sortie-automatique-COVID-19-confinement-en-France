@@ -93,7 +93,7 @@ def download_attestation(details):
         generate_btn.click()
 
         # now wait 3 seconds (probably not mandatory...)
-        print("New sleeping 3 seconds...")
+        print("Now sleeping 3 seconds...")
         time.sleep(3)
 
         # check that there is a new <a href="..." download="..."> link
