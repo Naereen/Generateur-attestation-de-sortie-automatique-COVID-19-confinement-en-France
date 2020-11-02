@@ -92,9 +92,9 @@ def download_attestation(details):
         # TODO how to configure the path of the file to save?
         generate_btn.click()
 
-        # now wait 5 seconds (probably not mandatory...)
-        print("New sleeping 5 seconds...")
-        time.sleep(5)
+        # now wait 3 seconds (probably not mandatory...)
+        print("New sleeping 3 seconds...")
+        time.sleep(3)
 
         # check that there is a new <a href="..." download="..."> link
         # <a href="blob:https://media.interieur.gouv.fr/712fc9d2-6967-4e63-b9c3-870175b6258f" download="attestation-2020-10-31_12-40.pdf"></a>
