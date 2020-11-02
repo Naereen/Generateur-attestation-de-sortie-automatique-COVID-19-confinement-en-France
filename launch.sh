@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+cd /home/lilian/publis/Generateur-dattestation-de-sortie-automatique.git/
 python3 ./generateur_attestation_sortie_automatique.py
 
 ls -larth *.pdf
