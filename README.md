@@ -34,6 +34,8 @@ Il faut changer un peu le code de [`launch.sh`](launch.sh) pour envoyer le PDF g
 - Ensuite, installer l'application bureau avec ̀`sudo desktop-file-install Generateur-dattestation-de-sortie-automatique.desktop`, et elle devrait être accessible dans votre menu d'application, pour générer une nouvelle application en un clic.
 - *Chez moi, ça marche*, mais je ne ferai rien de plus automatique (je peux répondre à [des questions posées comme issues](https://github.com/Naereen/Generateur-attestation-de-sortie-automatique-COVID-19-confinement-en-France/issues/new) ou [par email](https://perso.crans.org/besson/callme.fr.html)).
 
+![screenshots/demo.gif](screenshots/demo.gif)
+
 ## Capture d'écran du notebook
 
 ![capture d'écran du notebook](screenshots/screenshot1.png)
