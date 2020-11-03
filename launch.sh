@@ -7,15 +7,26 @@ python3 ./generateur_attestation_sortie_automatique.py
 
 ls -larth *.pdf
 
-dateNow=$(date '+%Y-%m-%d')
+dateNow="$(date '+%Y-%m-%d')"
 #namePDF=$(echo attestation-${dateNow}_*.pdf)
-namePDF=$(ls -larth attestation-${dateNow}*pdf | tail -n1 | grep -o 'attestation.*.pdf')
-echo CP ${namePDF} ${Szam}attestations/${dateNow}/
-CP ${namePDF} ${Szam}attestations/${dateNow}/
+namePDF="$(ls -larth attestation-${dateNow}*pdf | tail -n1 | grep -o 'attestation.*.pdf')"
 
-echo "Une nouvelle attestation vient d'être générée à ${dateNow}, elle est désormais disponible ici : https://perso.crans.org/besson/attestations/${dateNow}/${namePDF}"
-notify-send "Une nouvelle attestation vient d'être générée à ${dateNow}, elle est désormais disponible ici : https://perso.crans.org/besson/attestations/${dateNow}/${namePDF}"
-echo FreeSMS.py "Une nouvelle attestation vient d'être générée à ${dateNow}, elle est désormais disponible ici : https://perso.crans.org/besson/attestations/${dateNow}/${namePDF}"
-FreeSMS.py "Une nouvelle attestation vient d'être générée à ${dateNow}, elle est désormais disponible ici : https://perso.crans.org/besson/attestations/${dateNow}/${namePDF}"
+# Generate a PNG image from the PDF
+# http://askubuntu.com/questions/50170/ddg#50180
+namePNG="${namePDF%.pdf}"
+pdftoppm "${namePDF}" "${namePNG}" -png -f 1 -singlefile
+namePNG="${namePNG}.png"
+
+# now compress both PDF and PNG
+PDFCompress "${namePDF}"
+advpng -z -2 "${namePNG}"
+
+echo CP "${namePDF}" "${namePNG}" "${Szam}attestations/${dateNow}/"
+CP "${namePDF}" "${namePNG}" "${Szam}attestations/${dateNow}/"
+
+echo "Une nouvelle attestation vient d'être générée à ${dateNow}, elle est désormais disponible ici : https://perso.crans.org/besson/attestations/${dateNow}/${namePDF} et https://perso.crans.org/besson/attestations/${dateNow}/${namePNG}"
+notify-send "Une nouvelle attestation vient d'être générée à ${dateNow}, elle est désormais disponible ici : https://perso.crans.org/besson/attestations/${dateNow}/${namePDF} et https://perso.crans.org/besson/attestations/${dateNow}/${namePNG}"
+echo FreeSMS.py "Une nouvelle attestation vient d'être générée à ${dateNow}, elle est désormais disponible ici : https://perso.crans.org/besson/attestations/${dateNow}/${namePDF} et https://perso.crans.org/besson/attestations/${dateNow}/${namePNG}"
+FreeSMS.py "Une nouvelle attestation vient d'être générée à ${dateNow}, elle est désormais disponible ici : https://perso.crans.org/besson/attestations/${dateNow}/${namePDF} et https://perso.crans.org/besson/attestations/${dateNow}/${namePNG}"
 
 # make clean
