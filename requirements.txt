@@ -2,4 +2,3 @@ selenium
 ipython
 jupyter
 jupyter-notebook
-twilio
