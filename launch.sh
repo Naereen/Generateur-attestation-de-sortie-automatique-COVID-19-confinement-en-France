@@ -11,7 +11,9 @@ dateNow="$(date '+%Y-%m-%d')"
 #namePDF=$(echo attestation-${dateNow}_*.pdf)
 namePDF="$(ls -larth attestation-${dateNow}*pdf | tail -n1 | grep -o 'attestation.*.pdf')"
 
-if [ ! -f "$namePDF" ]; then exit 1 fi
+if [ ! -f "$namePDF" ]; then
+	exit 1;
+fi
 
 # Generate a PNG image from the PDF
 # http://askubuntu.com/questions/50170/ddg#50180
