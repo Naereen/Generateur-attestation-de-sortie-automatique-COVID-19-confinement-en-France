@@ -16,5 +16,5 @@ watch_run:
 	watch -n 3300 './launch.sh'
 
 clean:
-	trash geckodriver.log
-	trash attestation*.pdf attestation*.png
+	-trash geckodriver.log
+	-trash attestation*.pdf attestation*.png

@@ -2,12 +2,13 @@
 #-*- coding: utf8 -*-
 
 import time
-from datetime import datetime
-import urllib.request
-import subprocess
-from selenium import webdriver
-
 import base64
+import urllib.request
+from datetime import datetime
+
+from selenium import webdriver
+import selenium
+
 
 def get_file_content_chrome(browser, uri):
     """ Use selenium [browser] to download blob [uri].
@@ -31,21 +32,49 @@ def get_file_content_chrome(browser, uri):
 
 # bytes = get_file_content_chrome(browser, "blob:https://developer.mozilla.org/7f9557f4-d8c8-4353-9752-5a49e85058f5")
 
-def download_attestation(details):
+def download_attestation(details, headless=True):
     """ Fill the form on https://media.interieur.gouv.fr/deplacement-covid-19/ with details, and save the PDF attestation."""
     download_name = None
     try:
         firefoxOptions = webdriver.FirefoxOptions()
-        firefoxOptions.headless = True
-        browser = webdriver.Firefox(options=firefoxOptions)
+        if headless:
+            firefoxOptions.headless = True
+
+        # disable cache, see https://stackoverflow.com/a/47093059/
+        profile = webdriver.FirefoxProfile()
+        profile.set_preference("browser.cache.disk.enable", False)
+        profile.set_preference("browser.cache.memory.enable", False)
+        profile.set_preference("browser.cache.offline.enable", False)
+        profile.set_preference("network.http.use-cache", False)
+
+        browser = webdriver.Firefox(profile, options=firefoxOptions)
+        browser.delete_all_cookies()
 
         URL = "https://media.interieur.gouv.fr/deplacement-covid-19/"
+        browser.get(URL)
+        browser.get(URL)
+        browser.get(URL)
         browser.get(URL)
 
         # keep this check, to be sure that the downloaded webpage was the correct one, update if needed!
         page_source = browser.page_source
         page_source_100 = '<html class="fontawesome-i2svg-active fontawesome-i2svg-complete" lang="fr"><head><meta charset="UTF'
         assert page_source[:100] == page_source_100
+
+        def click_update_alert():
+            # click on '#update-alert'
+            try:
+                print("Clicking on '#update-alert'...")
+                update_alert = browser.find_element_by_id("update-alert")
+                # time.sleep(120*60)
+                try:
+                    update_alert.click()
+                except:
+                    print("Failed to click '#update-alert'...")
+            except selenium.common.exceptions.NoSuchElementException:
+                print("Failed to locate '#update-alert'...")
+
+        click_update_alert()
 
         # Now, let's fill with details from the input dictionnary details (see below for example)
         # - field-firstname
@@ -57,7 +86,7 @@ def download_attestation(details):
         # - field-zipcode
         # - field-datesortie : may be missing
         # - field-heuresortie : may be missing
-        
+
         # automatically add current date/time if not present
         now = datetime.now()
         if 'datesortie' not in details:
@@ -69,22 +98,26 @@ def download_attestation(details):
         for fieldname, value in details.items():
             hidden_value = '*' * len(value)
             print(f"Filling the form '{fieldname}' with value '{hidden_value}'...")
-            input_field = browser.find_element_by_id(f"field-{fieldname}")  
+            input_field = browser.find_element_by_id(f"field-{fieldname}")
             input_field.clear()
             input_field.send_keys(value)
         # this check is useful, to be sure that we don't try to generate a PDF
         # if an input field was not correctly filled
         for fieldname, value in details.items():
             print(f"Checking value of the form '{fieldname}'...")
-            input_field = browser.find_element_by_id(f"field-{fieldname}")  
+            input_field = browser.find_element_by_id(f"field-{fieldname}")
             its_new_value = input_field.get_attribute("value")
             if its_new_value != value:
                 print(f"Error: the form '{fieldname}' has value '{its_new_value}' != '{value}'.")
+
+        click_update_alert()
 
         # click on '#checkbox-achats'
         print("Clicking on '#checkbox-achats'...")
         checkbox_achats = browser.find_element_by_id("checkbox-achats")
         checkbox_achats.click()
+
+        click_update_alert()
 
         # click on '#generate-btn'
         print("Clicking on 'generate-btn'...")
@@ -131,7 +164,7 @@ def download_attestation(details):
 def send_attestations():
     now = datetime.now()
     today = f"{now:%Y-%m-%d}"
-    # TODO write this without needing IPython
+    # TODO write this without needing IPython
     # !ls -larth *pdf
     # !echo CP attestation-$(date '+%Y-%m-%d')_*.pdf ${Szam}attestations/$(date '+%Y-%m-%d')/
     # !CP attestation-$(date '+%Y-%m-%d')_*.pdf ${Szam}attestations/$(date '+%Y-%m-%d')/
@@ -141,10 +174,20 @@ import json
 import sys
 
 if __name__ == '__main__':
+    args = sys.argv
     # TODO use a real command line argument parser
-    filename = sys.argv[1] if len(sys.argv) > 1 else "details_lilian.json"
+    not_headless = False
+    if "DEBUG" in args:
+        not_headless = True
+        args = [arg for arg in args if arg != "DEBUG"]
+    if "--not-headless" in args:
+        not_headless = True
+        args = [arg for arg in args if arg != "--not-headless"]
+
+    filename = args[1] if len(args) > 1 else "details_lilian.json"
     with open(filename, "r") as f:
         details = json.load(f)
-    download_attestation(details)
+
+    download_attestation(details, headless=not not_headless)
     # TODO write this without needing IPython
     # send_attestations()
