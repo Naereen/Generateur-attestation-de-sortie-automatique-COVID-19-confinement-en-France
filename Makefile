@@ -4,8 +4,8 @@ SHELL=/usr/bin/env /bin/bash
 all:	send
 
 send:	send_zamok
-send_zamok:
-	CP --exclude=.ipynb_checkpoints --exclude=.git ./ ${Szam}publis/Generateur-dattestation-de-sortie-automatique.git/
+send_zamok: clean
+	CP --exclude=.ipynb_checkpoints --exclude=.git --exclude=details*json --exclude=attestation* ./ ${Szam}publis/Generateur-dattestation-de-sortie-automatique.git/
 
 run:
 	#ipython3 < generateur_attestation_sortie_automatique.py
@@ -17,4 +17,4 @@ watch_run:
 
 clean:
 	trash geckodriver.log
-	trash attestation*.pdf
+	trash attestation*.pdf attestation*.png
