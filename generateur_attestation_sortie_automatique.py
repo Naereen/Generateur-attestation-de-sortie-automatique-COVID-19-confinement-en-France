@@ -4,7 +4,7 @@
 import time
 import base64
 import urllib.request
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from selenium import webdriver
 import selenium
@@ -32,7 +32,7 @@ def get_file_content_chrome(browser, uri):
 
 # bytes = get_file_content_chrome(browser, "blob:https://developer.mozilla.org/7f9557f4-d8c8-4353-9752-5a49e85058f5")
 
-def download_attestation(details, headless=True):
+def download_attestation(details, headless=True, delta=None, number=None):
     """ Fill the form on https://media.interieur.gouv.fr/deplacement-covid-19/ with details, and save the PDF attestation."""
     download_name = None
     try:
@@ -89,6 +89,9 @@ def download_attestation(details, headless=True):
 
         # automatically add current date/time if not present
         now = datetime.now()
+        if delta is not None:
+            print(f"Using delta = {delta}")
+            now = now + delta
         if 'datesortie' not in details:
             details['datesortie'] = f"{now:%Y-%m-%d}"
         if 'heuresortie' not in details:
@@ -143,7 +146,10 @@ def download_attestation(details, headless=True):
                     print("Downloading the file and save it!")
                     # 1st try...
                     bytes_download = get_file_content_chrome(browser, href)
-                    download_name = download
+                    if number is not None:
+                        download_name = download.replace(".pdf", f"_{number}.pdf")
+                    else:
+                        download_name = download
                     with open(download_name, "wb") as download_file:
                         download_file.write(bytes_download)
                     print(f"The PDF file {download_name} is now saved!")
@@ -188,6 +194,12 @@ if __name__ == '__main__':
     with open(filename, "r") as f:
         details = json.load(f)
 
-    download_attestation(details, headless=not not_headless)
+    for number, delta in enumerate([
+        timedelta(),
+        timedelta(hours=1),
+        timedelta(hours=2),
+        timedelta(hours=3),
+    ]):
+        download_attestation(details, headless=not not_headless, delta=delta, number=number)
     # TODO write this without needing IPython
     # send_attestations()
