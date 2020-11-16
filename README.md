@@ -46,13 +46,13 @@ Un exemple d'attestation générée depuis le notebook est [disponible ici dans 
 
 ---
 
-## :scroll: License ? [![GitHub license](https://img.shields.io/github/license/Naereen/notebooks.svg)](https://github.com/Naereen/notebooks/blob/master/LICENSE)
+## :scroll: License ? [![GitHub license](https://img.shields.io/github/license/Naereen/Generateur-attestation-de-sortie-automatique-COVID-19-confinement-en-France.svg)](https://github.com/Naereen/Generateur-attestation-de-sortie-automatique-COVID-19-confinement-en-France/blob/master/LICENSE)
 This repository are published under the terms of the [MIT License](https://lbesson.mit-license.org/) (file [LICENSE.txt](LICENSE.txt)).
 © [Lilian Besson](https://GitHub.com/Naereen), 2020.
 
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/notebooks/graphs/commit-activity)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/Generateur-attestation-de-sortie-automatique-COVID-19-confinement-en-France/graphs/commit-activity)
 [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://GitHub.com/Naereen/ama)
-[![Analytics](https://ga-beacon.appspot.com/UA-38514290-17/github.com/Naereen/notebooks/README.md?pixel)](https://GitHub.com/Naereen/notebooks/)
+[![Analytics](https://ga-beacon.appspot.com/UA-38514290-17/github.com/Naereen/Generateur-attestation-de-sortie-automatique-COVID-19-confinement-en-France/README.md?pixel)](https://GitHub.com/Naereen/Generateur-attestation-de-sortie-automatique-COVID-19-confinement-en-France/)
 
 [![ForTheBadge uses-badges](http://ForTheBadge.com/images/badges/uses-badges.svg)](http://ForTheBadge.com)
 [![ForTheBadge uses-git](http://ForTheBadge.com/images/badges/uses-git.svg)](https://GitHub.com/)
