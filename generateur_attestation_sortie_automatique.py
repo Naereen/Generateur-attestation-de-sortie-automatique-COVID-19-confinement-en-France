@@ -2,6 +2,7 @@
 #-*- coding: utf8 -*-
 
 import time
+import copy
 import base64
 import urllib.request
 from datetime import datetime, timedelta
@@ -32,8 +33,9 @@ def get_file_content_chrome(browser, uri):
 
 # bytes = get_file_content_chrome(browser, "blob:https://developer.mozilla.org/7f9557f4-d8c8-4353-9752-5a49e85058f5")
 
-def download_attestation(details, headless=True, delta=None, number=None):
+def download_attestation(details, headless=True, delta=None, extra_str_download_name=None):
     """ Fill the form on https://media.interieur.gouv.fr/deplacement-covid-19/ with details, and save the PDF attestation."""
+    details = copy.copy(details)
     download_name = None
     try:
         firefoxOptions = webdriver.FirefoxOptions()
@@ -90,8 +92,10 @@ def download_attestation(details, headless=True, delta=None, number=None):
         # automatically add current date/time if not present
         now = datetime.now()
         if delta is not None:
-            print(f"Using delta = {delta}")
+            print(f"Using delta = {delta} (file will end with '..._{extra_str_download_name}.pdf')")
+            print(f"{now:%H:%M}")
             now = now + delta
+            print(f"{now:%H:%M}")
         if 'datesortie' not in details:
             details['datesortie'] = f"{now:%Y-%m-%d}"
         if 'heuresortie' not in details:
@@ -125,7 +129,6 @@ def download_attestation(details, headless=True, delta=None, number=None):
         # click on '#generate-btn'
         print("Clicking on 'generate-btn'...")
         generate_btn = browser.find_element_by_id("generate-btn")
-        # TODO how to configure the path of the file to save?
         generate_btn.click()
 
         # now wait 3 seconds (probably not mandatory...)
@@ -146,8 +149,8 @@ def download_attestation(details, headless=True, delta=None, number=None):
                     print("Downloading the file and save it!")
                     # 1st try...
                     bytes_download = get_file_content_chrome(browser, href)
-                    if number is not None:
-                        download_name = download.replace(".pdf", f"_{number}.pdf")
+                    if extra_str_download_name is not None:
+                        download_name = download.replace(".pdf", f"_{extra_str_download_name}.pdf")
                     else:
                         download_name = download
                     with open(download_name, "wb") as download_file:
@@ -190,16 +193,19 @@ if __name__ == '__main__':
         not_headless = True
         args = [arg for arg in args if arg != "--not-headless"]
 
+    # TODO feature request: read name of details_XXX.json file from cli arguments
     filename = args[1] if len(args) > 1 else "details_lilian.json"
     with open(filename, "r") as f:
         details = json.load(f)
 
+    # TODO feature request: read number of delta hours from cli arguments
     for number, delta in enumerate([
-        timedelta(),
+        timedelta(hours=0),
         timedelta(hours=1),
         timedelta(hours=2),
         timedelta(hours=3),
     ]):
-        download_attestation(details, headless=not not_headless, delta=delta, number=number)
+        extra_str_download_name = f"plus{number}h"
+        download_attestation(details, headless=not not_headless, delta=delta, extra_str_download_name=extra_str_download_name)
     # TODO write this without needing IPython
     # send_attestations()

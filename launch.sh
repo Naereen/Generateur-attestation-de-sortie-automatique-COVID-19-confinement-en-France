@@ -9,7 +9,7 @@ ls -larth *.pdf
 
 dateNow="$(date '+%Y-%m-%d')"
 #namePDF=$(echo attestation-${dateNow}_*.pdf)
-namePDF="$(ls -larth attestation-${dateNow}*pdf | tail -n1 | grep -o 'attestation.*.pdf')"
+namePDF="$(ls -larth attestation-${dateNow}*pdf | tail -n4 | grep -o 'attestation.*.pdf')"
 
 if [ ! -f "$namePDF" ]; then
 	exit 1;
