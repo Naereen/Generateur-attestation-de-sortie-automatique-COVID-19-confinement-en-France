@@ -119,10 +119,25 @@ def download_attestation(details, headless=True, delta=None, extra_str_download_
 
         click_update_alert()
 
+	# TODO add options for this
+
         # click on '#checkbox-achats'
-        print("Clicking on '#checkbox-achats'...")
-        checkbox_achats = browser.find_element_by_id("checkbox-achats")
-        checkbox_achats.click()
+        if False:
+            print("Clicking on '#checkbox-achats'...")
+            checkbox_achats = browser.find_element_by_id("checkbox-achats")
+            checkbox_achats.click()
+
+        # click on '#checkbox-famille'
+        if True:
+            print("Clicking on '#checkbox-famille'...")
+            checkbox_famille = browser.find_element_by_id("checkbox-famille")
+            checkbox_famille.click()
+
+        # click on '#checkbox-sport_animaux'
+        if False:
+            print("Clicking on '#checkbox-sport_animaux'...")
+            checkbox_sportanimaux = browser.find_element_by_id("checkbox-sport_animaux")
+            checkbox_sportanimaux.click()
 
         click_update_alert()
 
@@ -199,12 +214,10 @@ if __name__ == '__main__':
         details = json.load(f)
 
     # TODO feature request: read number of delta hours from cli arguments
-    for number, delta in enumerate([
-        timedelta(hours=0),
-        timedelta(hours=1),
-        timedelta(hours=2),
-        timedelta(hours=3),
-    ]):
+    maxNumberOfHours = 4
+    maxNumberOfHours = 24
+    for number in range(maxNumberOfHours):
+        delta = timedelta(hours=number)
         extra_str_download_name = f"plus{number}h"
         download_attestation(details, headless=not not_headless, delta=delta, extra_str_download_name=extra_str_download_name)
     # TODO write this without needing IPython
