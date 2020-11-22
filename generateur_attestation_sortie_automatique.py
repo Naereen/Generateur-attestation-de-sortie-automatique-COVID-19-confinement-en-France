@@ -128,13 +128,13 @@ def download_attestation(details, headless=True, delta=None, extra_str_download_
             checkbox_achats.click()
 
         # click on '#checkbox-famille'
-        if True:
+        if False:
             print("Clicking on '#checkbox-famille'...")
             checkbox_famille = browser.find_element_by_id("checkbox-famille")
             checkbox_famille.click()
 
         # click on '#checkbox-sport_animaux'
-        if False:
+        if True:
             print("Clicking on '#checkbox-sport_animaux'...")
             checkbox_sportanimaux = browser.find_element_by_id("checkbox-sport_animaux")
             checkbox_sportanimaux.click()
@@ -214,8 +214,8 @@ if __name__ == '__main__':
         details = json.load(f)
 
     # TODO feature request: read number of delta hours from cli arguments
-    maxNumberOfHours = 4
     maxNumberOfHours = 24
+    maxNumberOfHours = 4
     for number in range(maxNumberOfHours):
         delta = timedelta(hours=number)
         extra_str_download_name = f"plus{number}h"
