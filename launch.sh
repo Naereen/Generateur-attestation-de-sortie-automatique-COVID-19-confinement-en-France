@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-echo "Nouvelle attetation de sortie en cours de génération..."
-notify-send "Nouvelle attetation de sortie en cours de génération..."
+echo "Nouvelle attestation de sortie en cours de génération..."
+notify-send "Nouvelle attestation de sortie en cours de génération..."
 cd /home/lilian/publis/Generateur-dattestation-de-sortie-automatique.git/
 python3 ./generateur_attestation_sortie_automatique.py
 
