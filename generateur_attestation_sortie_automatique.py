@@ -121,10 +121,10 @@ def download_attestation(details, headless=True, delta=None, extra_str_download_
 
 	# TODO add options for this
 
-        # click on '#checkbox-achats'
+        # click on '#checkbox-achats_culturel_cultuel'
         if True:
-            print("Clicking on '#checkbox-achats'...")
-            checkbox_achats = browser.find_element_by_id("checkbox-achats")
+            print("Clicking on '#checkbox-achats_culturel_cultuel'...")
+            checkbox_achats = browser.find_element_by_id("checkbox-achats_culturel_cultuel")
             checkbox_achats.click()
 
         # click on '#checkbox-famille'

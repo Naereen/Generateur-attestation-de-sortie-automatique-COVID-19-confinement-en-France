@@ -11,7 +11,7 @@ dateNow="$(date '+%Y-%m-%d')"
 #namePDF=$(echo attestation-${dateNow}_*.pdf)
 
 # TODO customize this -4 from a cli argument?
-namesPDF="$(ls -larth attestation-${dateNow}*pdf | tail -n4 | grep -o 'attestation.*.pdf')"
+namesPDF="$(ls -larth attestation-${dateNow}*pdf | tail -n24 | grep -o 'attestation.*.pdf')"
 
 for namePDF in $namesPDF; do
     if [ ! -f "$namePDF" ]; then
